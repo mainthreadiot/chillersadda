@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chillers Adda | Cool Bites & Beverages</title>
+  <style>
+    :root {
+      --primary: #0b3c5d;
+      --secondary: #328cc1;
+      --accent: #d9b310;
+      --ink: #1a1f2b;
+      --muted: #596375;
+      --bg: #f5f8fc;
+      --card: #ffffff;
+      --line: #d8e1ef;
+      --gradient: linear-gradient(135deg, #0b3c5d 0%, #328cc1 55%, #56c7df 100%);
+      --shadow: 0 18px 40px rgba(11, 60, 93, 0.15);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top right, #e7f4ff 0%, #f5f8fc 45%, #f5f8fc 100%);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--gradient);
+      color: #fff;
+      padding: 84px 0 110px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -140px auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      filter: blur(2px);
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 34px;
+      grid-template-columns: 1.25fr 1fr;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .77rem;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(2px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.1;
+      letter-spacing: .02em;
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 640px;
+      color: rgba(255,255,255,0.93);
+      font-size: 1.05rem;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: floatIn 1.1s ease both;
+    }
+
+    .hero-card img {
+      border-radius: 0px;
+      width: 100%;
+      height: 250px;
+      object-fit: fill;
+    }
+
+    .section {
+      padding: 74px 0;
+    }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      color: var(--primary);
+    }
+
+    .section-head p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 740px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+      animation: rise .7s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 42px rgba(11, 60, 93, 0.2);
+    }
+
+    .card img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 14px 16px 16px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 6px 0 0;
+      font-size: .93rem;
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1.1fr .9fr;
+    }
+
+    .info-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-box h3 {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 1.18rem;
+    }
+
+    .info-box p, .info-box li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .info-box ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      bottom: 2px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--secondary), var(--accent));
+    }
+
+    .step {
+      position: relative;
+      padding: 6px 0 18px 24px;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--secondary);
+      box-shadow: 0 0 0 4px rgba(50,140,193,0.12);
+    }
+
+    .step h4 {
+      margin: 0;
+      color: var(--primary);
+      font-size: .98rem;
+    }
+
+    .step p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    footer {
+      background: #081f31;
+      color: rgba(255,255,255,.84);
+      padding: 28px 0;
+      font-size: .92rem;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes floatIn {
+      from { transform: translateY(20px) scale(.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid, .split { grid-template-columns: 1fr; }
+      .hero-card img { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="tag">Chillers Adda</span>
+        <h1>Refreshing Moments, Crafted for Every Craving</h1>
+        <p>
+          Welcome to Chillers Adda, your neighborhood destination for chilled beverages, quick bites, and a warm service experience.
+          Explore our featured items, visit us at our location, and discover what makes us the go-to adda for cool vibes.
+        </p>
+      </div>
+      <div class="hero-card">
+        <img src="11.png" alt="Chillers Adda signature presentation" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Items</h2>
+          <p>A visual showcase of our most-loved offerings. This draft can be updated with item names, pricing, and detailed descriptions anytime.</p>
+        </div>
+        <div class="grid">
+          <article class="card"><img src="IMG_5837.png" alt="Featured item 1" /><div class="card-body"><h3>Signature Chiller</h3><p>Freshly blended and perfectly chilled for all-day refreshment.</p></div></article>
+          <article class="card"><img src="IMG_6147.png" alt="Featured item 2" /><div class="card-body"><h3>Classic Cooler</h3><p>A crowd favorite with balanced flavor and a smooth finish.</p></div></article>
+          <article class="card"><img src="IMG_6411.png" alt="Featured item 3" /><div class="card-body"><h3>Adda Special</h3><p>Our house-style creation designed for repeat cravings.</p></div></article>
+          <article class="card"><img src="IMG_6470.png" alt="Featured item 4" /><div class="card-body"><h3>Fruit Fusion</h3><p>Natural fruit notes paired with icy goodness and energy.</p></div></article>
+          <article class="card"><img src="IMG_6471.png" alt="Featured item 5" /><div class="card-body"><h3>Creamy Delight</h3><p>Rich, satisfying, and made for premium taste lovers.</p></div></article>
+          <article class="card"><img src="IMG_6542.JPG.jpeg" alt="Featured item 6" /><div class="card-body"><h3>Quick Bite Combo</h3><p>Perfectly matched sides to complement your beverage choice.</p></div></article>
+          <article class="card"><img src="IMG_6543.JPG.jpeg" alt="Featured item 7" /><div class="card-body"><h3>Snack Pick</h3><p>Light, tasty, and ideal for short breaks or meet-ups.</p></div></article>
+          <article class="card"><img src="IMG_6545.JPG.jpeg" alt="Featured item 8" /><div class="card-body"><h3>Evening Refresher</h3><p>A vibrant option for your after-work or evening chill hour.</p></div></article>
+          <article class="card"><img src="IMG_6546.JPG.jpeg" alt="Featured item 9" /><div class="card-body"><h3>Weekend Treat</h3><p>Made for relaxed moments and long conversations with friends.</p></div></article>
+          <!--<article class="card"><img src="WhatsApp Image 2026-04-25 at 7.05.19 PM.jpeg" alt="Featured item 10" /><div class="card-body"><h3>House Favorite</h3><p>One of our most appreciated selections across all age groups.</p></div></article>-->
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container split">
+        <div class="info-box">
+          <h3>How to Reach</h3>
+          <p><strong>Address:</strong> Chill Adda Cafe, near Mamta Sweet Corner, Krishna Nagar, Pura Bhandari Colony, Dighi, Pune, Pimpri-Chinchwad, Maharashtra 411015</p>
+          <p style="margin-top:10px;"><strong>Contact:</strong> <a href="tel:+917517565718" style="color:var(--secondary);font-weight:700;text-decoration:none;">751 756 5718</a></p>
+          <p style="margin-top:12px;">
+            <a href="https://www.google.com/maps/place/Chill+Adda+Cafe,+near+Mamta+sweet+corner,+Krishna+Nagar,+Pura+Bhandari+Colony,+Dighi,+Pune,+Pimpri-Chinchwad,+Maharashtra+411015/data=!4m2!3m1!1s0x3bc2c794f32fa6eb:0xcdf27830889dfd89!18m1!1e1?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESCDI2LjE2LjE0GAAgnp0KKooBLDk0MjY3NzI3LDk0MjkyMTk1LDk0Mjk5NTMyLDEwMDc5NjQ5OCwxMDA3OTc3NjEsMTAwNzk2NTM1LDk0Mjg0NDU0LDk0MjgwNTc2LDk0MjA3Mzk0LDk0MjA3NTA2LDk0MjA4NTA2LDk0MjE4NjUzLDk0MjI5ODM5LDk0Mjc1MTY4LDk0Mjc5NjE5QgJJTg%3D%3D&skid=b6a28028-8849-4c90-8773-a4bd8f293d44&g_st=aw" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600;">Show Location on Map</a>
+          </p>
+        </div>
+        <div class="info-box">
+          <h3>Why Join Us</h3>
+          <ul>
+            <li>Freshly prepared snacks and beverages with consistent taste</li>
+            <li>Welcoming ambiance for friends, family, and quick meetups</li>
+            <li>Quick service and polite staff focused on customer comfort</li>
+            <li>Great value combos and a menu for every mood</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 14px;">
+      <div class="container">
+        <div class="section-head">
+          <h2>Customer Journey Timeline</h2>
+          <p>An attractive timeline to highlight your service flow and create trust with first-time visitors.</p>
+        </div>
+        <div class="info-box">
+          <div class="timeline">
+            <div class="step">
+              <h4>Step 1: Discover & Explore</h4>
+              <p>Customers view our featured drinks and bites through visuals and recommendations.</p>
+            </div>
+            <div class="step">
+              <h4>Step 2: Place Your Order</h4>
+              <p>Pick your favorites with assistance from our team for the perfect combo.</p>
+            </div>
+            <div class="step">
+              <h4>Step 3: Crafted Fresh</h4>
+              <p>Every order is prepared fresh with quality ingredients and careful presentation.</p>
+            </div>
+            <div class="step">
+              <h4>Step 4: Enjoy at Adda</h4>
+              <p>Relax, connect, and enjoy a refreshing experience in a friendly atmosphere.</p>
+            </div>
+            <div class="step">
+              <h4>Step 5: Return for More</h4>
+              <p>Great taste and service keep customers coming back and recommending us.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-flex">
+      <span>&copy; 2026 Chillers Adda. All rights reserved.</span>
+      <span>Crafted with care for delightful experiences.</span>
+    </div>
+  </footer>
+</body>
+</html>
